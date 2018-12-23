@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ETicaretProjesi.Models.Review>
+
+@{
+    ViewBag.Title = "Yorumlar";
+    Layout = "~/Views/Shared/_adminLoyout.cshtml";
+}
+
+<h2>Yorum Listesi</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Kullanıcı İsmi
+        </th>
+        <th>
+            Yorum
+        </th>
+        <th>
+            Ürün Adı
+        </th>
+        <th>
+            Oy
+        </th>
+        <th>
+            Email
+        </th>       
+        <th>
+            Tarih
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Review1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datetime)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Sil", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

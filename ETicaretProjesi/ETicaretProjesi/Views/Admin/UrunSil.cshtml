@@ -1,0 +1,224 @@
+﻿@model ETicaretProjesi.Models.Product
+
+@{
+    ViewBag.Title = "UrunSil";
+    Layout = "~/Views/Shared/_adminLoyout.cshtml";
+}
+
+<h2>Ürünü Sil</h2>
+
+<h4 style="color:red">Ürünü Silmek İstediğinize Emin Misiniz?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityPerUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuantityPerUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OldPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OldPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsInStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitOnOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitOnOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductAvailable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AltText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AltText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddBadge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddBadge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OjjerTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OjjerTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OjjerBadgeClass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OjjerBadgeClass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LongDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LongDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCategory.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubCategory.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.CompanyName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Geri Dön", "Urunler")
+        </div>
+    }
+</div>

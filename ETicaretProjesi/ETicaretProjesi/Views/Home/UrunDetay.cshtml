@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "UrunDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+        <div class="row" style="margin-top:50px">
+            @{
+                var pd = TempData["urunDetay"] as ETicaretProjesi.Models.Product;
+                <div class="col-md-6">
+                    <img src="@Url.Content(pd.ImageUrl)" style="width:80%" />
+                </div>
+                <div class="col-md-6" style="background-color:lightgray">
+                    <h1>@pd.Name</h1>
+
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    }
+                    <br /><br />
+
+                    <p class="lead"><b>Fiyatı: </b>@pd.UnitPrice TL</p>
+                    <p>
+                        <span style="background-color:red; color:white">
+                            <b>Stok Adeti: </b>@pd.UnitsInStock
+                        </span>
+                    </p>
+                    <b>Ürün Miktarı: </b>
+                    <input type="number" name="miktar" value="1" min="1" max="@pd.UnitsInStock" />
+                    <br /><br />
+                    <a href="@Url.Action("Sepet", "Home", new { id = pd.ProductID })" class="btn btn-success">Sepete Ekle</a>
+                    <a href="@Url.Action("Istek", "Home", new { id = pd.ProductID })" class="btn btn-warning">İstek Listesine Ekle</a>
+                    <br /><br />
+                    <p><b>Ürün Açıklaması:</b></p>
+                    <p>@Html.Raw(pd.LongDescription)</p>
+                </div>
+            }
+        </div><hr />
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Açıklama</a></li>
+                <li><a data-toggle="tab" href="#menu1">Yorumlar</a></li>
+            </ul>
+            <div class="tab-content" style="color:white">
+                <div id="home" class="tab-pane fade in active">
+                    <br /> @Html.Raw(pd.LongDescription)
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    @foreach (var item in TempData["yorumlar"] as IEnumerable<ETicaretProjesi.Models.Review>)
+                    {
+                        <br />
+                        <p><b style="color:dodgerblue">@item.Name</b></p>
+                        <p>@item.Review1</p>
+                    }
+                </div>
+            </div><br />
+            <hr />
+            @{
+                if (Session["kullanici"] != null)
+                {
+                    <label style="color:dodgerblue">YORUM YAP</label>
+                    <hr />
+                    using (Html.BeginForm("YorumEkle", "Home", new { id = pd.ProductID }, FormMethod.Post))
+                    {
+                        <p style="color:dodgerblue">Ürünü Oyla</p>
+                        <input type="number" name="Rate" min="1" max="5" value="1" />
+                        <div class="form-group">
+                            <br />
+                            <label style="color:dodgerblue">Yorumunuz:</label>
+                            <textarea class="form-control" rows="3" name="Review"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning">GÖNDER</button>
+                    }
+                }
+            }
+        </div>
+</div>
+

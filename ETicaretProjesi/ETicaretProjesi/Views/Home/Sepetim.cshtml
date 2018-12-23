@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Sepetim";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row" style="margin-top:30px">
+        <div class="panel panel-default">
+            <!-- Varsayılan panel içeriği -->
+            <div class="panel-heading">Aşağıda sepetinizdeki ürünler bulunmaktadır. </div>
+            <!-- Table -->
+            <table class="table">
+                <tr style="font-weight:bold">
+                    <td>Sepetten Çıkar</td>
+                    <td>Ürün Görseli</td>
+                    <td>Ürün Adı</td>
+                    <td>Toplam Fiyat</td>
+                    <td>Ürün Miktarı</td>
+                </tr>
+                @{
+                    foreach (var item in TempData["sepetL"] as IEnumerable<ETicaretProjesi.Models.OrderDetail>)
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("SepettenCikar","Home",new { id = item.ProductID })" class="glyphicon glyphicon-trash" style="color:red; font-size:50px; margin-top:15px"></a></td>
+                            <td><img src="@Url.Content(item.Product.ImageUrl)" style="height:10%" /></td>
+                            <td><p style="margin-top:35px">@item.Product.Name</p></td>
+                            <td><p style="margin-top:35px">@item.TotalAmount</p></td>
+                            <td><p style="margin-top:35px">@item.Quantity</p></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

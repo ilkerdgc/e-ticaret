@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Shared/_adminLoyout.cshtml";
+}
+
+<h2>Ürün Listesi</h2><br />
+
+<p>
+    @Html.ActionLink("Yeni Ürün Ekle", "YeniUrun", "", new { @class = "btn btn-success" })
+</p>
+<div class="container">
+    <div class="row" style="margin-top:30px">
+        <div class="panel panel-default">
+            <table class="table">
+                <tr style="font-weight:bold">
+                    <td>Ürün Görseli</td>
+                    <td>Ürün Adı</td>
+                    <td>Kısa Açıklama</td>
+                    <td>Fiyat</td>
+                    <td>Stok Miktarı</td>
+                    <td>Alt Kategori ID</td>
+                </tr>
+                @{
+                    foreach (var item in TempData["urun"] as IEnumerable<ETicaretProjesi.Models.Product>)
+                    {
+                        <tr>
+                            <td><img src="@Url.Content(item.ImageUrl)" style="height:10%" /></td>
+                            <td><p style="margin-top:35px">@item.Name</p></td>
+                            <td><p style="margin-top:35px">@item.ShortDescription</p></td>
+                            <td><p style="margin-top:35px">@item.UnitPrice</p></td>
+                            <td><p style="margin-top:35px">@item.UnitsInStock</p></td>
+                            <td><p style="margin-top:35px">@item.SubCategoryID</p></td>
+                            <td><br />
+                                @Html.ActionLink("Düzenle", "UrunDuzenle", new { id=item.ProductID }, new { @class = "btn btn-warning" }) |
+                                @Html.ActionLink("Detay", "UrunDetay", new {  id=item.ProductID }, new { @class = "btn btn-primary" }) |
+                                @Html.ActionLink("Sil", "UrunSil", new {  id=item.ProductID }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

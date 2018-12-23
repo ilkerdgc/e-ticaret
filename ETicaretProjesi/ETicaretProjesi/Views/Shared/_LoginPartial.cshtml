@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @{
+            if (Session["kullanici"] != null) // online ise
+            {
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-shopping-cart"></span></li>
+                <li>@Html.ActionLink("Sepetim", "Sepetim", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-list-alt"></span></li>
+                <li>@Html.ActionLink("İstek Listesi", "IstekListem", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-user"></span> @Session["kullanici"]</li>
+                <li>@Html.ActionLink("Çıkış Yap", "Cikis", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            }
+            else if (Session["admin"] != null)
+            {
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-wrench"></span></li>
+                <li>@Html.ActionLink("Admin Paneli", "AdminPanel", "Admin", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-shopping-cart"></span></li>
+                <li>@Html.ActionLink("Sepetim", "Sepetim", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-list-alt"></span></li>
+                <li>@Html.ActionLink("İstek Listesi", "IstekListem", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp; @Session["admin"]&nbsp; &nbsp;</li>
+                <li style="color:white; padding-top:15px"><span class="glyphicon glyphicon-share"></span></li>
+                <li>@Html.ActionLink("Çıkış Yap", "Cikis", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            }
+            else // offline ise
+            {
+                <li>@Html.ActionLink("Üye Ol", "UyeOl", "Login", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Giriş Yap", "Giris", "Login", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            }
+        }    
+    </ul>
+}
